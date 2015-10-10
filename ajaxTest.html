@@ -1,0 +1,42 @@
+<html>
+
+<script type="text/javascript">
+    function btn_click() {
+        
+        var xmlHttp = new XMLHttpRequest();
+
+        //gain value
+        var username = document.getElementById("txt_username").value;
+        var age = document.getElementById("txt_age").value;
+
+        //XMLHttpRequest Object
+        xmlHttp.open("get", "Get.aspx?username=" + username
+            + "&age=" + age);
+
+        
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                document.getElementById("result").innerHTML = xmlHttp.responseText;
+            }
+        }
+
+        //send request
+        xmlHttp.send(null);
+    }
+</script>
+
+<body>
+    <label for="txt_username">
+        Name:</label>
+    <input type="text" id="txt_username" />
+    <br />
+    <label for="txt_age">
+        Age:</label>
+    <input type="text" id="txt_age" />
+    <br />
+    <input type="button" value="GET" id="btn" onclick="btn_click();" />
+    <div id="result">
+    </div>
+</body>
+
+</html>
